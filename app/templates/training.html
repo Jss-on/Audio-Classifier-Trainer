@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>training</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    
+    <h1>Training Section</h1>
+    <form action="{{ url_for('main.train_model') }}" method="post">
+        <label for="model">Select Model:</label>
+        <select name="model" id="model">
+            <option value="random_forest">Random Forest</option>
+            <!-- Add more options for other models as needed -->
+        </select>
+        
+        <label for="n_estimators">Number of Estimators:</label>
+        <input type="range" id="n_estimators" name="n_estimators" min="10" max="200" step="10" value="100">
+        <output id="n_estimators_output" for="n_estimators">100</output>
+        
+        <!-- Add more sliders for other hyperparameters as needed -->
+
+        <input type="submit" value="Train Model">
+    </form>
+    <!-- Display the confusion matrix plot if available -->
+    {% if plot_path %}
+    <h3>Confusion Matrix:</h3>
+    <img src="{{ url_for('static', filename=plot_path.split('/')[-1]) }}" alt="Model Accuracy">
+    {% endif %}
+    <script>
+        // Update the output text when the slider value changes
+        document.getElementById("n_estimators").oninput = function() {
+            document.getElementById("n_estimators_output").textContent = this.value;
+        };
+    </script>
+    
+    <a href="{{ url_for('main.prediction') }}">Proceed to Prediction</a>
+    
+    {% if training_complete %}
+        <p>Model training completed. You can download the trained Random Forest model below:</p>
+        <a href="{{ url_for('main.download_model') }}" class="btn btn-primary">Download Model</a>
+    {% endif %}
+</body>
+</html>
