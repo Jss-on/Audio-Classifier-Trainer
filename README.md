@@ -1,61 +1,57 @@
+
 # Audio Classifier Trainer
 
-This repository contains code for training an audio classifier using Random Forest. You can train the model with your custom audio data and make predictions.
+This project allows you to train an audio classifier using Random Forest on your custom dataset.
 
 ## Getting Started
 
-Follow these instructions to set up the project on your local machine:
+Follow these instructions to set up the project on your local machine.
 
-### 1. Clone the Repository
+### Prerequisites
 
-Clone the repository using the following command:
+Ensure that you have Python 3.6 or higher installed on your system.
 
-```bash
-git clone https://github.com/Jss-on/Audio-Classifier-Trainer.git
-```
+### Installation
 
-### 2. Navigate to the Project Directory
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Jss-on/Audio-Classifier-Trainer.git
+   ```
 
-Change to the project directory using:
+2. Navigate to the project directory:
+   ```bash
+   cd Audio-Classifier-Trainer
+   ```
 
-```bash
-cd Audio-Classifier-Trainer
-```
+3. Create a virtual environment:
+   ```bash
+   python3 -m venv myenv
+   ```
 
-### 3. Install the Required Packages
+4. Activate the virtual environment:
+   - On Windows:
+     ```bash
+     myenv\Scripts\activate
+     ```
+   - On macOS and Linux:
+     ```bash
+     source myenv/bin/activate
+     ```
 
-Install the required packages by running:
+5. Install the required packages:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-```bash
-pip install -r requirements.txt
-```
+6. Run the application:
+   ```bash
+   python run.py
+   ```
 
-### 4. Run the Application
+## Usage
 
-Finally, start the application with:
-
-```bash
-python run.py
-```
-
-Now, you can access the web interface at `http://localhost:5000/` and interact with the audio classifier.
-
-## Features
-
-- Upload and manage audio samples for custom classes.
-- Train a Random Forest model with the provided audio samples.
-- Evaluate the trained model using accuracy metrics and confusion matrix.
-- Make predictions on new audio files using the trained model.
-- Download the trained model for further use.
-
-## Contributing
-
-Feel free to open issues or pull requests if you want to contribute to the project.
+Follow the on-screen instructions to upload your audio samples and train the model.
 
 ## License
 
-Please refer to the LICENSE file for details on licensing and copyright.
-
-## Contact
-
-For any questions or feedback, please contact the repository owner.
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
