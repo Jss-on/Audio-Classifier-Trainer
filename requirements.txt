@@ -8,3 +8,4 @@ matplotlib
 optuna
 xgboost
 lightgbm
+pyngrok

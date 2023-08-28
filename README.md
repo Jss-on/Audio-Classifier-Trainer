@@ -1,4 +1,3 @@
-
 # Audio Classifier Trainer
 
 This project allows you to train an audio classifier using Random Forest on your custom dataset.
@@ -9,44 +8,68 @@ Follow these instructions to set up the project on your local machine.
 
 ### Prerequisites
 
-Ensure that you have Python 3.6 or higher installed on your system.
+Ensure that you have Python 3.6 or higher and ngrok installed on your system.
+
+### ngrok Configuration
+
+Before running the application, make sure to configure ngrok by adding your authentication token. Open a terminal and run the following command:
+
+\`\`\`bash
+ngrok config add-authtoken Your-Token
+\`\`\`
 
 ### Installation
 
+#### Common Steps for All Operating Systems
+
 1. Clone the repository:
-   ```bash
+   \`\`\`bash
    git clone https://github.com/Jss-on/Audio-Classifier-Trainer.git
-   ```
+   \`\`\`
 
 2. Navigate to the project directory:
-   ```bash
+   \`\`\`bash
    cd Audio-Classifier-Trainer
-   ```
+   \`\`\`
 
 3. Create a virtual environment:
-   ```bash
+   \`\`\`bash
    python3 -m venv myenv
-   ```
+   \`\`\`
+
+#### Windows
 
 4. Activate the virtual environment:
-   - On Windows:
-     ```bash
-     myenv\Scripts\activate
-     ```
-   - On macOS and Linux:
-     ```bash
-     source myenv/bin/activate
-     ```
+   \`\`\`powershell
+   .\myenv\Scripts\Activate
+   \`\`\`
 
 5. Install the required packages:
-   ```bash
+   \`\`\`powershell
    pip install -r requirements.txt
-   ```
+   \`\`\`
 
 6. Run the application:
-   ```bash
+   \`\`\`powershell
    python run.py
-   ```
+   \`\`\`
+
+#### macOS and Linux
+
+4. Activate the virtual environment:
+   \`\`\`bash
+   source myenv/bin/activate
+   \`\`\`
+
+5. Install the required packages:
+   \`\`\`bash
+   pip install -r requirements.txt
+   \`\`\`
+
+6. Run the application:
+   \`\`\`bash
+   python run.py
+   \`\`\`
 
 ## Usage
 

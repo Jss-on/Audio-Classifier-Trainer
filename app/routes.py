@@ -21,12 +21,15 @@ from app.progress import progress_info, progress_upload, progress_process, train
 from app.ensembles import rf_training, xgb_training
 from app.preprocessing import extract_zips, extract_features_labels, preprocess_features_labels
 import threading
+from pyngrok import ngrok
 
 
 main = Blueprint("main", __name__)
+
+PORT_NO = 5000
 DEBUG = True
 DOWNLOAD_MODEL_NAME = ""
-
+public_url = ngrok.connect(PORT_NO).public_url
 
 
 @main.route('/progress', methods=["GET"])
