@@ -5,3 +5,6 @@ numpy
 scikit-learn
 seaborn
 matplotlib
+optuna
+xgboost
+lightgbm

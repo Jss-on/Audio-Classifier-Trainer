@@ -5,57 +5,331 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+
     <script>
+        function updateFileName(inputElement) {
+            var label = inputElement.parentElement;
+            var fileName = inputElement.files[0] ? inputElement.files[0].name : " ZIP File:";
+            
+            // Set the text content of the label to the file name
+            label.textContent = fileName;
+            
+            // Append the inputElement back into the label after setting the text content
+            label.appendChild(inputElement);
+        }
+
+
         function addClass() {
             var container = document.getElementById("class-container");
             var index = container.getElementsByClassName("class-section").length;
-            var div = document.createElement("div");
-            div.className = "class-section";
+
+            var classSection = document.createElement("div");
+            classSection.className = "class-section";
+            
+            var ellipsisMenu = document.createElement("div");
+            ellipsisMenu.className = "ellipsis-menu";
+            ellipsisMenu.innerHTML = "&#8942;";
+            ellipsisMenu.onclick = function() { toggleMenu(this); };
+
+            var menuOptions = document.createElement("div");
+            menuOptions.className = "menu-options";
+            menuOptions.onclick = function() { removeClass(this); };
+
+            var removeLink = document.createElement("a");
+            removeLink.href = "javascript:void(0)";
+            removeLink.innerText = "Remove";
+
+            menuOptions.appendChild(removeLink);
+            ellipsisMenu.appendChild(menuOptions);
+            classSection.appendChild(ellipsisMenu);
+
+            var classNameFrame = document.createElement("div");
+            classNameFrame.className = "class-name-frame";
 
             var label1 = document.createElement("label");
             label1.htmlFor = "class_name" + index;
             label1.innerText = "Class " + index + " Name: ";
-            div.appendChild(label1);
+            label1.className = "bold-label";
+            classNameFrame.appendChild(label1);
 
             var input1 = document.createElement("input");
             input1.type = "text";
             input1.name = "class_name" + index;
             input1.required = true;
-            div.appendChild(input1);
+            classNameFrame.appendChild(input1);
+
+           
+
+            var fileUploadFrame = document.createElement("div");
+            fileUploadFrame.className = "class-name-frame1";
 
             var label2 = document.createElement("label");
-            label2.htmlFor = "class" + index;
-            label2.innerText = " ZIP File: ";
-            div.appendChild(label2);
+            label2.className = "custom-file-label";
 
             var input2 = document.createElement("input");
             input2.type = "file";
             input2.name = "class" + index;
             input2.accept = ".zip";
             input2.required = true;
-            div.appendChild(input2);
+            input2.id = "class" + index;
+            input2.className = "custom-file-input";
+            input2.onchange = function() {
+                updateFileName(this);
+            };
 
-            container.appendChild(div);
+            var uploadIcon = document.createElement("img");
+            uploadIcon.src = "{{ url_for('static', filename='R.png') }}";
+            uploadIcon.alt = "Upload";
+            uploadIcon.className = "upload-icon";
+
+            label2.appendChild(uploadIcon);
+            label2.appendChild(input2);
+            fileUploadFrame.appendChild(label2);
+
+            classSection.appendChild(fileUploadFrame);
+            classSection.appendChild(classNameFrame);
+            container.appendChild(classSection);
         }
+
+        function validateForm() {
+            var fileInputs = document.getElementsByClassName("custom-file-input");
+            for (var i = 0; i < fileInputs.length; i++) {
+                if (fileInputs[i].files.length === 0) {
+                    alert("Please select a ZIP file for all classes.");
+                    return false; // Prevent the form from submitting
+                }
+            }
+            return true; // Allow the form to submit
+        }
+        function toggleMenu(element) {
+            var menu = element.querySelector('.menu-options');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function removeClass(element) {
+            var classSection = element.closest('.class-section');
+            classSection.parentNode.removeChild(classSection);
+        }
+
+
+
     </script>
+    <style>
+        .class-section {
+            position: relative; /* Added */
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .ellipsis-menu {
+            position: absolute; /* Added */
+            top: 5px; /* Added */
+            right: 5px; /* Added */
+            /* ... other styles ... */
+        }
+        .button {
+            background-color: #1E88E5; /* Blue color */
+            color: white;
+            border: none;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: 500;
+            margin: 10px 0;
+        }
+        .button:hover {
+            background-color: #155a8a; /* Darker blue on hover */
+        }
+        .class-section {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+         .class-section {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="file"] {
+            margin-bottom: 10px;
+
+        }
+        input[type="submit"] {
+            background-color: #1E88E5;
+            color: white;
+            border: none;
+            padding: 15px 32px;
+            text-align: center;
+            font-size: larger;
+            text-decoration: none;
+            display: inline-block;
+            font-size: larger;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        h1 {
+            color: #1E88E5; /* Same color as the button */
+            margin-bottom: 20px; /* Space below the title */
+            font-size: 32px; /* Increase the title font size */
+            
+        }
+        p {
+        margin-bottom: 30px;
+        font-size: 18px;
+        }
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            }
+
+        label {
+        font-weight: bold;
+        }
+        .bold-label {
+            color: darkgray; /* Or you can use a specific color code like #A9A9A9 */
+        }
+
+        .button {
+            font-weight: bold; /* This will make the font bold */
+            font-size: larger; /* This will make the font larger */
+            }
+        
+        .button {
+            background-color: white; /* Set the background color to black */
+            color: black; /* Set the font color to white */
+            font-weight: bold; /* Makes the font bold */
+            font-size: larger; /* Makes the font larger */
+            border: 2px solid black; /* Removes the default border */
+            cursor: pointer; /* Changes the cursor to a pointer on hover */
+            padding: 10px 20px;
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition effect */
+            
+        }
+
+        .button:hover {
+            background-color: black; /* Changes the background color to white on hover */
+            color: white; /* Changes the font color to black on hover */
+            }
+
+        .button {
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s ease;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+        }
+
+       
+
+        .class-name-frame1:hover {
+            transform: scale(1.1);
+        }
+
+        
+    </style>
 </head>
 <body>
-    <h1>Data Upload</h1>
-    <p>Upload ZIP files containing audio samples for each class.</p>
-    <form action="{{ url_for('main.upload') }}" method="post" enctype="multipart/form-data">
-        <div id="class-container">
-            {% for i in range(3) %}
+    <div class="container">
+        <h1>Data Upload</h1>
+        <p>Upload ZIP files containing audio samples for each class.</p>
+        <form action="{{ url_for('main.upload') }}" method="post" enctype="multipart/form-data" onsubmit="return validateForm()"> 
+
+           
+
             <div class="class-section">
-                <label for="class_name{{ i }}">Class {{ i }} Name:</label>
-                <input type="text" name="class_name{{ i }}" required>
-                <label for="class{{ i }}">ZIP File:</label>
-                <input type="file" name="class{{ i }}" accept=".zip" required>
+            <div id="class-container" >
+                {% for i in range(number_of_classes) %}
+                <div class="class-section">
+                    <div class="ellipsis-menu" onclick="toggleMenu(this)">
+                        &#8942;
+                        <div class="menu-options" onclick="removeClass(this)">
+                            <a href="javascript:void(0)">Remove</a>
+                        </div>
+                    </div>
+
+                    <div class="class-name-frame1">
+                        <label class="custom-file-label">
+                            <img src="{{ url_for('static', filename='R.png') }}" alt="Upload" class="upload-icon">
+                            <input type="file" name="class{{ i }}" accept=".zip" required id="class{{ i }}" class="custom-file-input" onchange="updateFileName(this);">
+                        </label>
+                    </div>
+                    <div class="class-name-frame">
+                        <label for="class_name{{ i }}" class="bold-label">Class {{ i }} Name:</label>
+
+                        <input type="text" name="class_name{{ i }}" required> 
+                        
+                    </div>
+                    
+                    <!-- <div class="class-name-frame1">
+                        <label class="custom-file-label">
+                            <img src="{{ url_for('static', filename='R.png') }}" alt="Upload" class="upload-icon">
+                            <input type="file" name="class{{ i }}" accept=".zip" required id="class{{ i }}" class="custom-file-input" onchange="updateFileName(this);">
+                        </label>
+                    </div> -->
+
+                </div>
+                {% endfor %}
+                <!-- <button onclick="addClass()">Add Another Class</button> -->
+                
+            
             </div>
-            {% endfor %}
-        </div>
-        <input type="submit" value="Upload">
-    </form>
-    <button onclick="addClass()">Add Another Class</button>
-    <a href="{{ url_for('main.training') }}">Proceed to Training</a>
+
+            <div class="buttons-container" >
+                
+                <button class="button" onclick="addClass()">Add Class</button>
+            </div>
+            </div>
+           
+            
+            <div class="buttons-container">
+                <input type="submit" value="Upload Dataset" class="button" style="box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+            </div>
+            
+            <div id="progress-bar" style="width: 0%; height: 20px; background-color: #1E88E5;"></div>
+            <p id="progress-text" style="display: none;">0/100</p> 
+            {% if debug %}
+                <a href="{{ url_for('main.training') }}">Proceed to Training</a>
+            {% endif %}
+            
+        </form>
+        
+        <script>
+            function updateProgress() {
+                $.getJSON('/progress_upload', function(data) {
+                    $('#progress-bar').css('width', data.progress + '%');
+                    if(data.current_iteration > 0) {
+                        $('#progress-text').show(); // Show the text
+                        $('#progress-text').text(data.current_iteration + '/' + data.total_iteration);
+                    } else {
+                        $('#progress-text').hide(); // Hide the text
+                    }
+                });
+            }
+    
+            // Update the progress bar every second
+            setInterval(updateProgress, 1000);
+        </script>
+        <!-- <a href="{{ url_for('main.training') }}">Proceed to Training</a> -->
+
+    </div>
+
+    
 </body>
 </html>

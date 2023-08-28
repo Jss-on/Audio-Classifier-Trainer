@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <script>
+        function updateFileName(inputElement) {
+            var label = inputElement.parentElement;
+            var fileName = inputElement.files[0] ? inputElement.files[0].name : " ZIP File:";
+            
+            // Set the text content of the label to the file name
+            label.textContent = fileName;
+            
+            // Append the inputElement back into the label after setting the text content
+            label.appendChild(inputElement);
+        }
+    </script>
+    
+    <style>
+         body {
+            font-family: 'Rubik', sans-serif;
+            background-color: #f7f7f7;
+            color: #4A4A4A;
+            text-align: center;
+            font-size: 18px; /* Increase the base font size */
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            zoom: 1.2; /* 120% zoom */
+        }
+        h1 {
+            color: #1E88E5; /* Same color as the button */
+            margin-bottom: 20px; /* Space below the title */
+            font-size: 32px; /* Increase the title font size */
+        }
+        p {
+            margin-bottom: 30px; /* Space below the paragraph */
+            font-size: 18px; /* Increase the title font size */
+        }
+        .logo-container {
+            text-align: center;
+            margin-top: 20px; /* Space above the logo */
+        }
+        .logo {
+            max-width: 200px; /* Adjust as needed */
+        }
+
+        .custom-file-label:hover {
+            transform: scale(1.1);
+        }
+        h3 {
+            color: red;
+        }
+
+        
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Upload Model File</h1>
+        <p>Please upload your model in pickle file.</p>
+        <div class="container">
+            <form action="{{ url_for('main.save_model') }}" method="post" enctype="multipart/form-data">
+                <div class="class-name-frame1">
+                    <label>Upload .pkl file</label>
+                    <br/>
+                    <label class="custom-file-label">
+                        
+                        <img src="{{ url_for('static', filename='R.png') }}" alt="Upload" class="upload-icon">
+                        <input type="file" name="pickle_file" accept=".pkl" required id="pickle_file" class="custom-file-input" onchange="updateFileName(this);">
+                    </label>
+                </div>
+                
+                <input type="submit" value="Upload" class="button" style="box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+            </form>
+        </div>           
+        
+    </div>
+</body>
+</html>

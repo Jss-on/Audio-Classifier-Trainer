@@ -3,15 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>act</title>
+    <title>Audio Classifier Trainer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+
+    <style>
+        body {
+            font-family: 'Rubik', sans-serif;
+            background-color: #f7f7f7;
+            color: #4A4A4A;
+            text-align: center;
+            font-size: 18px; /* Increase the base font size */
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            zoom: 1.2; /* 120% zoom */
+        }
+        h1 {
+            color: #1E88E5; /* Same color as the button */
+            margin-bottom: 20px; /* Space below the title */
+            font-size: 32px; /* Increase the title font size */
+        }
+        p {
+            margin-bottom: 30px; /* Space below the paragraph */
+            font-size: 18px; /* Increase the title font size */
+        }
+        .start-button {
+            background-color: #1E88E5;
+            color: white;
+            border: none;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .start-button:hover {
+            background-color: black; /* Darker shade of blue on hover */
+        }
+        .logo-container {
+            text-align: center;
+            margin-top: 20px; /* Space above the logo */
+        }
+        .logo {
+            max-width: 200px; /* Adjust as needed */
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Audio Classifer Trainer</h1>
-    <p>Click the button below to start recording and training your audio model.</p>
-    <a href="{{ url_for('main.recording') }}">
-        <button>Start</button>
-   
-    </a>
+    <div class="container">
+        
+        <h1>Audio Classifier Trainer</h1>
+        <div class="container">
+            <p>Start training your audio model in a few simple steps. Customize your classes, upload your samples, and build your own audio recognition system.</p>
+            <a href="{{ url_for('main.recording') }}" class="start-button">Start Training</a>
+
+        </div>
+        </br>
+        
+        <div class="container">
+            <p>Start inference. Upload your model in pkl file.</p>
+            <a href="{{ url_for('main.upload_model_inference') }}" class="start-button">Start Inference</a>
+        
+        </div>
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='ADI-Logo-RGB-Solid.png') }}" alt="Analog Devices Logo" class="logo">
+        </div>
+       
+    
+    </div>
+    
 </body>
 </html>

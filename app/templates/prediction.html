@@ -5,19 +5,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>prediction</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <script>
+        function updateFileName(inputElement) {
+            var label = inputElement.parentElement;
+            var fileName = inputElement.files[0] ? inputElement.files[0].name : " ZIP File:";
+            
+            // Set the text content of the label to the file name
+            label.textContent = fileName;
+            
+            // Append the inputElement back into the label after setting the text content
+            label.appendChild(inputElement);
+        
+        }
+        function toggleMenu(element) {
+            var menuOptions = element.querySelector(".menu-options");
+            var isVisible = getComputedStyle(menuOptions).display === "block";
+            menuOptions.style.display = isVisible ? "none" : "block";
+        }
+
+        function showForm(formId) {
+            // Hide all forms
+            document.getElementById('train-form').style.display = 'none';
+            document.getElementById('upload-form').style.display = 'none';
+
+            // Show the desired form
+            document.getElementById(formId).style.display = 'block';
+        }
+        function redirectToTrain() {
+            window.location.href = "{{ url_for('main.delete_and_train') }}";
+        }
+
+        function redirectToUpload() {
+            window.location.href = "{{ url_for('main.upload_model_inference') }}";
+        }
+
+    </script>
+    
+    <style>
+         body {
+            font-family: 'Rubik', sans-serif;
+            background-color: #f7f7f7;
+            color: #4A4A4A;
+            text-align: center;
+            font-size: 18px; /* Increase the base font size */
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            zoom: 1.2; /* 120% zoom */
+        }
+        h1 {
+            color: #1E88E5; /* Same color as the button */
+            margin-bottom: 20px; /* Space below the title */
+            font-size: 32px; /* Increase the title font size */
+        }
+        p {
+            margin-bottom: 30px; /* Space below the paragraph */
+            font-size: 18px; /* Increase the title font size */
+        }
+        .logo-container {
+            text-align: center;
+            margin-top: 20px; /* Space above the logo */
+        }
+        .logo {
+            max-width: 200px; /* Adjust as needed */
+        }
+
+        .custom-file-label:hover {
+            transform: scale(1.1);
+        }
+        h3 {
+            color: red;
+        }
+
+        
+    </style>
+
 </head>
+
 <body>
-    <h1>Prediction Section</h1>
-    <p>Here, you can interact with the trained Random Forest model to make predictions.</p>
-    <form action="{{ url_for('main.predict') }}" method="post" enctype="multipart/form-data">
-        <label for="audio_file">Upload .wav file:</label>
-        <input type="file" name="audio_file" accept=".wav" required>
-        <button type="submit">Predict</button>
+    <div class="container">
+        
+        <h1>Prediction Section</h1>
+        
+        <p>Here, you can interact with the trained model to make predictions.</p>
+        <div class="container">
+            <div class="ellipsis-menu" onclick="toggleMenu(this)">
+                &#8942;
+                <div class="menu-options">                    
+                    <a href="javascript:void(0)" onclick="redirectToUpload()">Upload New Model</a>
+                </div>
+            </div>
+            
+            
+            
+            <div class="container" id="train-form" style="display: none;">
+                <form action="{{ url_for('main.delete_and_train') }}" method="post" enctype="multipart/form-data">
+                    <input type="submit" value="Train New" class="button" style="box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+                </form>
+            </div>
+            
+            <div class="container" id="upload-form" style="display: none;">
+                <p>Start inference. Upload your model in pkl file.</p>
+                <a href="{{ url_for('main.upload_model_inference') }}" class="start-button">Start Inference</a>
+            </div>
+            
+            
+            <form action="{{ url_for('main.predict') }}" method="post" enctype="multipart/form-data">
+                <div class="class-name-frame1">
+                    <label>Upload .wav file</label>
+                    <br/>
+                    <label class="custom-file-label">
+                        
+                        <img src="{{ url_for('static', filename='R.png') }}" alt="Upload" class="upload-icon">
+                        <input type="file" name="audio_file" accept=".wav" required id="audio_file" class="custom-file-input" onchange="updateFileName(this);">
+                    </label>
+                </div>
+                
+                <input type="submit" value="Predict" class="button" style="box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+            </form>
+        </div>
+            {% if prediction %}
+                <h2>Prediction Result:</h2>
+                <h3><strong>{{ prediction }}</strong></h3>
+            {% endif %}
+            <!-- Other prediction-related content -->
+        
+    </div>
+    </br>
+    <!-- <div class="container"> -->
+    <form action="{{ url_for('main.delete_and_train') }}" method="post" enctype="multipart/form-data">
+               
+        <input type="submit" value="Train New" class="button" style="box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
     </form>
-    {% if prediction %}
-        <h2>Prediction Result:</h2>
-        <p>The predicted class for the uploaded audio file is: <strong>{{ prediction }}</strong></p>
-    {% endif %}
-    <!-- Other prediction-related content -->
+    <!-- </div> -->
+    
 </body>
 </html>

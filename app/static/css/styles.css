@@ -1,12 +1,178 @@
+body {
+    background-color: #f7f7f7;
+    font-family: 'Rubik', sans-serif;
+    text-align: center;
+    color: #4A4A4A;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+.class-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.class-frame {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.upload-container {
+    display: flex;
+    align-items: center;
+}
+
+.upload-icon {
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+}
+
+input[type="text"],
+input[type="file"] {
+    margin-left: 10px;
+    padding: 5px;
+    width: 70%;
+}
+
+input[type="submit"],
 button {
-    background-color: #4CAF50;
-    border: none;
+    background-color: #000000;
     color: white;
+    border: none;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
+    margin: 20px auto;
     cursor: pointer;
+    border-radius: 5px;
 }
+
+button:hover {
+    background-color: #1565C0; /* Darker shade on hover */
+}
+
+.custom-file-label {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.custom-file-label {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.custom-file-label:hover {
+    background-color: #e0e0e0;
+}
+
+.custom-file-input {
+    display: none;
+}
+
+.upload-icon {
+    height: 20px;
+    margin-left: 10px;
+}
+.buttons-container {
+    display: flex;
+    justify-content: space-between; /* Space between the buttons */
+    align-items: center; /* Align vertically */
+    margin: 20px 0; /* Add some margin around the buttons */
+}
+
+.proceed-link {
+    text-align: center; /* Center the link text */
+    display: block; /* Make the link block-level so it takes up full width */
+    margin: 20px 0; /* Add some margin around the link */
+}
+.ellipsis-menu {
+    float: right;
+    cursor: pointer;
+    position: relative;
+}
+
+.menu-options {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 0;
+}
+
+.menu-options a {
+    color: black;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+}
+.button {
+    background-color: #1E88E5; /* Similar blue color */
+    color: white;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+    font-weight: 500; /* Slightly bold text */
+    margin: 10px 0; /* Some margin around the button */
+}
+.bold-label {
+    color: darkgray; /* Or you can use a specific color code like #A9A9A9 */
+  }
+  
+
+.button:hover {
+    background-color: #155a8a; /* Darker blue on hover */
+}
+.bold-label {
+    font-weight: bold;
+  }
+
