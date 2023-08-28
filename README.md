@@ -14,62 +14,62 @@ Ensure that you have Python 3.6 or higher and ngrok installed on your system.
 
 Before running the application, make sure to configure ngrok by adding your authentication token. Open a terminal and run the following command:
 
-\`\`\`bash
+```bash
 ngrok config add-authtoken Your-Token
-\`\`\`
+```
 
 ### Installation
 
 #### Common Steps for All Operating Systems
 
 1. Clone the repository:
-   \`\`\`bash
+   ```bash
    git clone https://github.com/Jss-on/Audio-Classifier-Trainer.git
-   \`\`\`
+   ```
 
 2. Navigate to the project directory:
-   \`\`\`bash
+   ```bash
    cd Audio-Classifier-Trainer
-   \`\`\`
+   ```
 
 3. Create a virtual environment:
-   \`\`\`bash
+   ```bash
    python3 -m venv myenv
-   \`\`\`
+   ```
 
 #### Windows
 
 4. Activate the virtual environment:
-   \`\`\`powershell
-   .\myenv\Scripts\Activate
-   \`\`\`
+   ```powershell
+   .myenvScriptsActivate
+   ```
 
 5. Install the required packages:
-   \`\`\`powershell
+   ```powershell
    pip install -r requirements.txt
-   \`\`\`
+   ```
 
 6. Run the application:
-   \`\`\`powershell
+   ```powershell
    python run.py
-   \`\`\`
+   ```
 
 #### macOS and Linux
 
 4. Activate the virtual environment:
-   \`\`\`bash
+   ```bash
    source myenv/bin/activate
-   \`\`\`
+   ```
 
 5. Install the required packages:
-   \`\`\`bash
+   ```bash
    pip install -r requirements.txt
-   \`\`\`
+   ```
 
 6. Run the application:
-   \`\`\`bash
+   ```bash
    python run.py
-   \`\`\`
+   ```
 
 ## Usage
 
