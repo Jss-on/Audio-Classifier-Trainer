@@ -12,16 +12,7 @@ Follow these instructions to set up the project on your local machine.
 
 Ensure that you have Python 3.6 or higher and ngrok installed on your system.
 
-### ngrok Configuration
-
-Before running the application, make sure to configure ngrok by adding your authentication token. Open a terminal and run the following command:
-
-```bash
-ngrok config add-authtoken Your-Token
-```
-
 ### Installation
-
 
 
 1. Clone the repository:
