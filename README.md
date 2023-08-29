@@ -1,3 +1,5 @@
+![Logo](./app/static/LOGO.png)
+
 # Audio Classifier Trainer
 
 This project allows you to train an audio classifier using Random Forest on your custom dataset.
