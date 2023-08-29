@@ -160,10 +160,14 @@ def train_model():
     
     if not os.path.exists(os.path.dirname(model_folder)):
         os.makedirs(os.path.dirname(model_folder))
-    model_path = r"data\model\trained_model_audio_{extend_name}.pkl".format(extend_name=extend_name)
-    model_temp = "data/model/trained_model_audio.pkl"
-    global DOWNLOAD_MODEL_NAME
-    DOWNLOAD_MODEL_NAME = model_path
+    #model_path = r"data\model\trained_model_audio_{extend_name}.pkl".format(extend_name=extend_name)
+    # OR using os.path.join for better compatibility
+    model_path = os.path.join("data", "model", "trained_model_audio_{}.pkl".format(extend_name))
+    #model_temp = "data/model/trained_model_audio.pkl"
+    # OR using os.path.join for better compatibility
+    model_temp = os.path.join("data", "model", "trained_model_audio_.pkl")
+
+    print("Model Path: ",model_path)
     if not os.path.exists(os.path.dirname(model_path)):
         os.makedirs(os.path.dirname(model_path))
 
