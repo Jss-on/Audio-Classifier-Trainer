@@ -169,7 +169,7 @@ def train_model():
     model_path = os.path.join("data", "model", "trained_model_audio_{}.pkl".format(extend_name))
     #model_temp = "data/model/trained_model_audio.pkl"
     # OR using os.path.join for better compatibility
-    model_temp = os.path.join("data", "model", "trained_model_audio_.pkl")
+    model_temp = os.path.join("data", "model", "trained_model_audio.pkl")
 
     print("Model Path: ",model_path)
     if not os.path.exists(os.path.dirname(model_path)):
@@ -245,9 +245,10 @@ def predict_audio_class(file_path, model, label_mapping):
 def predict():
     # Load the trained model
    
-    model_path = os.path.join("data", "model", "trained_model_audio.pk")
+    model_path = os.path.join("data", "model", "trained_model_audio.pkl")
+    
 
-    print("Jession Prediction: ",model_path)
+    print("Jession Prediction: ", model_path)
     loaded_data = joblib.load(model_path)
     model = loaded_data["trained_model"]
     class_names = loaded_data["class_names"]
