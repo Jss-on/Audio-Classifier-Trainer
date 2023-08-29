@@ -66,8 +66,9 @@ def recording():
 @main.route("/delete_and_train", methods=["GET","POST"])
 def delete_and_train():
     # Paths to the directories
-    audio_samples_dir = "data/audio_samples"
-    model_dir = "data/model"
+    audio_samples_dir = os.path.join("data","audio_samples") 
+    
+    model_dir = os.path.join("data","model")
     # Reset the progress_upload dictionary
     progress_upload['progress'] = 0
     progress_upload['current_iteration'] = 0
@@ -117,11 +118,14 @@ def extract_mfcc(audio, sr, n_mfcc=13):
 def train_model():
     # Directory where ZIP files were saved
     
-    model_folder = "data/model/"    
+    model_folder = os.path.join("data", "model", "")     
     reverse_class_mapping = session.get("reverse_class_mapping", {})
-    upload_folder = "data/audio_samples/"
+    
+    upload_folder = os.path.join("data", "audio_samples", "")
+
     class_names = session.get("class_names", {})
-    root_dir = "data/audio_samples"
+    
+    root_dir = os.path.join("data", "audio_samples")
 
     # Delete the model data
     
@@ -241,7 +245,8 @@ def predict_audio_class(file_path, model, label_mapping):
 def predict():
     # Load the trained model
    
-    model_path = r"data\model\trained_model_audio.pkl"
+    model_path = os.path.join("data", "model", "trained_model_audio.pk")
+
     print("Jession Prediction: ",model_path)
     loaded_data = joblib.load(model_path)
     model = loaded_data["trained_model"]
@@ -258,7 +263,9 @@ def predict():
     uploaded_file = request.files["audio_file"]
     if uploaded_file and uploaded_file.filename.endswith(".wav"):
         # Save the uploaded file to a temporary location
-        temp_path = "data/temp_audio.wav"
+       
+        temp_path = os.path.join("data", "temp_audio.wav")
+
         uploaded_file.save(temp_path)
         print(temp_path)
         # Predict the class using the original routine
@@ -288,7 +295,9 @@ def save_model():
 
     if uploaded_file and uploaded_file.filename.endswith(".pkl"):
         # Save the uploaded file to a temporary location
-        temp_path = r"data\model\trained_model_audio_{extend_name}.pkl".format(extend_name=extend_name)
+        
+        temp_path = os.path.join("data", "model", "trained_model_audio_{extend_name}.pkl".format(extend_name=extend_name))
+
         uploaded_file.save(temp_path)
         print(temp_path)
         # Predict the class using the original routine
@@ -307,7 +316,8 @@ def download_model():
     for key, values in class_names.items():
         extend_name += ("_" + str(key))
     
-    model_path = r"data\model\trained_model_audio_{extend_name}.pkl".format(extend_name=extend_name)
+    
+    model_path = os.path.join("data", "model", "trained_model_audio_{extend_name}.pkl".format(extend_name=extend_name))
     model_filename = os.path.basename(model_path)  # Get the filename from the path
 
     with open(model_path, "rb") as file:
@@ -330,7 +340,9 @@ def upload():
     print(request.form.keys())
 
     total_iterations = len(request.files.keys()) 
-    upload_folder = "data/audio_samples/"
+    
+    upload_folder = os.path.join("data", "audio_samples", "")
+
 
     if not os.path.exists(upload_folder):
         os.makedirs(upload_folder)
