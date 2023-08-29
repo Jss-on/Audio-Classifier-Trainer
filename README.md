@@ -20,7 +20,7 @@ ngrok config add-authtoken Your-Token
 
 ### Installation
 
-#### Common Steps for All Operating Systems
+
 
 1. Clone the repository:
    ```bash
@@ -37,25 +37,6 @@ ngrok config add-authtoken Your-Token
    python3 -m venv myenv
    ```
 
-#### Windows
-
-4. Activate the virtual environment:
-   ```powershell
-   .myenvScriptsActivate
-   ```
-
-5. Install the required packages:
-   ```powershell
-   pip install -r requirements.txt
-   ```
-
-6. Run the application:
-   ```powershell
-   python run.py
-   ```
-
-#### macOS and Linux
-
 4. Activate the virtual environment:
    ```bash
    source myenv/bin/activate
@@ -65,8 +46,11 @@ ngrok config add-authtoken Your-Token
    ```bash
    pip install -r requirements.txt
    ```
-
-6. Run the application:
+6. (Optional) Ngrok configuration
+   ```bash
+   ngrok config add-authtoken <Your-Token>
+   ```
+7. Run the application:
    ```bash
    python run.py
    ```
@@ -77,4 +61,4 @@ Follow the on-screen instructions to upload your audio samples and train the mod
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is for View Only. You may look at the code, but you are not authorized to use, modify, or distribute the code or any of its components. For more details, refer to the LICENSE.md file.
