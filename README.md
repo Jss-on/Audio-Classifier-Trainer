@@ -1,5 +1,6 @@
-![Logo](./app/static/LOGO.png)
-
+<p align='center'>
+  <img src='./app/static/LOGO.png' alt='Logo'/>
+</p>
 # Audio Classifier Trainer
 
 This project allows you to train an audio classifier using Random Forest on your custom dataset.
