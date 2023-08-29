@@ -1,9 +1,8 @@
 <p align='center'>
   <img src='./app/static/LOGO.png' alt='Logo'/>
 </p>
-# Audio Classifier Trainer
 
-This project allows you to train an audio classifier using Random Forest on your custom dataset.
+This web app allows you to train an audio classifier using ensemble models on your custom dataset.
 
 ## Getting Started
 
@@ -11,7 +10,7 @@ Follow these instructions to set up the project on your local machine.
 
 ### Prerequisites
 
-Ensure that you have Python 3.6 or higher and ngrok installed on your system.
+Ensure that you have Python 3.6 or higher installed on your system.
 
 ### Installation
 
